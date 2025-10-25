@@ -1,5 +1,6 @@
 import requests
 import time
+from urllib3.util.retry import Retry
 
 
 class Http:
@@ -29,8 +30,8 @@ class Http:
         self.delay = delay
         return self
 
-    def get(self, url: str, **kwargs):
-        return self.send("GET", url, **kwargs)
+    def get(self, url: str, data: dict = None, **kwargs):
+        return self.send("GET", url, params=data, **kwargs)
 
     def post(self, url: str, data: dict = None, **kwargs):
         return self.send("POST", url, data=data, **kwargs)
