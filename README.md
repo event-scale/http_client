@@ -15,7 +15,7 @@ A lightweight, chainable HTTP client for Python that supports automatic retries,
 1. Basic GET request
 
 ```python
-from http_client import Http
+from event_scale_http_client import Http
 
 response = Http().get("http://127.0.0.1:7000/", {
     "name": "Alex"
@@ -29,7 +29,7 @@ print(response.json())
 You can define how many times the request should retry and handle each failed attempt with a callback:
 
 ```python
-from http_client import Http
+from event_scale_http_client import Http
 
 
 def retry_callback(attempt, error):
@@ -52,7 +52,7 @@ error → the exception or status that caused the failure
 3. POST request with JSON body
 
 ```python
-from http_client import Http
+from event_scale_http_client import Http
 
 data = {
     "name": "Bedram",
@@ -68,7 +68,7 @@ print(response.status_code)
 4. POST request as form data
 
 ```python
-from http_client import Http
+from event_scale_http_client import Http
 
 (
     Http()

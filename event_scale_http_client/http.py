@@ -1,6 +1,6 @@
-import requests
 import time
-from urllib3.util.retry import Retry
+
+import requests
 
 
 class Http:
@@ -37,6 +37,18 @@ class Http:
         return self.send("POST", url, data=data, **kwargs)
 
     def send(self, method: str, url: str, **kwargs):
+        data = kwargs.pop("data", None)
+        headers = kwargs.get("headers", {})
+
+        if data:
+            if self.form:
+                kwargs["data"] = data
+            else:
+                kwargs["json"] = data
+
+            kwargs["headers"] = headers
+
+
         attempt = 0
         while True:
             try:

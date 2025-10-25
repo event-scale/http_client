@@ -1,7 +1,7 @@
 [project]
-name = "http"
-version = "0.1.0"
-description = ""
+name = "event_scale_http_client"
+version = "0.1.1"
+description = "A lightweight HTTP client with retry and form/JSON support"
 authors = [
     {name = "Bedram Tamang",email = "tmgbedu@gmail.com"}
 ]
@@ -11,6 +11,11 @@ dependencies = [
     "pytest (>=8.4.2,<9.0.0)",
     "requests (>=2.32.5,<3.0.0)",
     "responses (>=0.25.8,<0.26.0)"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
 ]
 
 

@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 
@@ -5,7 +6,7 @@ import responses
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from http_client import Http
+from event_scale_http_client import Http
 
 URL = "http://127.0.0.1:7000/"
 
@@ -34,6 +35,12 @@ def test_http_client_with_post():
     })
 
     assert response.status_code == 200
+
+    req = responses.calls[0].request
+    assert req.headers['Content-Type'] == 'application/json'
+    body = json.loads(req.body)
+    assert body['name'] == 'Bedram'
+    assert body['email'] == 'tmgbedu@gmail.com'
 
 
 @responses.activate
