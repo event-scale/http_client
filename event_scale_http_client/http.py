@@ -36,6 +36,12 @@ class Http:
     def post(self, url: str, data: dict = None, **kwargs):
         return self.send("POST", url, data=data, **kwargs)
 
+    def put(self, url: str, data: dict = None, **kwargs):
+        return self.send("PUT", url, data=data, **kwargs)
+
+    def delete(self, url: str, data: dict = None, **kwargs):
+        return self.send("DELETE", url, data=data, **kwargs)
+
     def send(self, method: str, url: str, **kwargs):
         data = kwargs.pop("data", None)
         headers = kwargs.get("headers", {})

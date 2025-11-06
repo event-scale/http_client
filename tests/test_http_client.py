@@ -60,6 +60,40 @@ def test_http_client_with_post_as_form():
 
 
 @responses.activate
+def test_http_client_with_put():
+    responses.add(responses.PUT, URL, status=200, json={"ok": True})
+
+    response = Http().put('http://127.0.0.1:7000', {
+        'name': 'Bedram',
+        'email': 'tmgbedu@gmail.com'
+    })
+
+    assert response.status_code == 200
+
+    req = responses.calls[0].request
+    assert req.headers['Content-Type'] == 'application/json'
+    body = json.loads(req.body)
+    assert body['name'] == 'Bedram'
+    assert body['email'] == 'tmgbedu@gmail.com'
+
+
+@responses.activate
+def test_http_client_with_delete():
+    responses.add(responses.DELETE, URL, status=200, json={"ok": True})
+
+    response = Http().delete('http://127.0.0.1:7000', {
+        'name': 'Bedram'
+    })
+
+    assert response.status_code == 200
+
+    req = responses.calls[0].request
+    assert req.headers['Content-Type'] == 'application/json'
+    body = json.loads(req.body)
+    assert body['name'] == 'Bedram'
+
+
+@responses.activate
 def test_http_client():
     responses.add(responses.GET, URL, status=500)
     responses.add(responses.GET, URL, status=200, json={"ok": True})
