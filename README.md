@@ -82,3 +82,30 @@ from event_scale_http_client import Http
 
 * [x] Sends data as application/x-www-form-urlencoded.
 * [x] Automatically encodes form fields.
+
+5. PUT request with JSON body
+
+```python
+from event_scale_http_client import Http
+
+data = {
+    "status": "processed"
+}
+
+response = Http().put("http://127.0.0.1:7000/orders/1", data)
+print(response.status_code)
+print(response.json())
+```
+
+* [x] Mirrors the POST helper for updating resources with JSON payloads.
+
+6. DELETE request
+
+```python
+from event_scale_http_client import Http
+
+response = Http().delete("http://127.0.0.1:7000/orders/1")
+print(response.status_code)
+```
+
+* [x] Provides a convenient shorthand for sending DELETE requests.
